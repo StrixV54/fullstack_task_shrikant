@@ -26,6 +26,7 @@
     "express": "^5.1.0",
     "http": "^0.0.1-security",
     "mongoose": "^8.14.1",
+    "redis": "^5.0.1",
     "socket.io": "^4.8.1",
     "tsc": "^2.0.4"
   }

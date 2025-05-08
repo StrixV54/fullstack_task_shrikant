@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import http from "http";
 import { Server, Socket } from "socket.io";
 import mongoose from "mongoose";
+import { createClient } from 'redis';
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -20,6 +21,22 @@ const io = new Server(server, {
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+const client = createClient({
+    username: process.env.REDIS_USERNAME,
+    password: process.env.REDIS_PASSWORD,
+    socket: {
+        host: process.env.REDIS_HOST,
+        port: Number(process.env.REDIS_PORT),
+    },
+});
+
+client.on('error', err => console.log('Redis Client Error', err));
+
+client.connect()
+    .then(() => console.log("Successfully connected to Redis!!"))
+    .catch(err => console.log("Error connecting to Redis!!\n", err));;
 
 mongoose.connect(process.env.NODE_ENV_MONGO_URL!)
     .then(() => console.log("Successfully connected to MongoDB!!"))

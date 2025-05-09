@@ -15,9 +15,9 @@ const socketConnection = (socket: Socket) => {
             const mongoTasks = await Task.find({});
             tasks.push({ text: newTask, id: shortUUID.generate() });
 
-            if (tasks.length > 5 || mongoTasks.length) {
-                console.log('More than 50 tasks in cache, moving to MongoDB and flushing redis cache.');
-                await Task.insertMany(tasks); // add new one in mongodb
+            if (tasks.length > 50 || mongoTasks.length) {
+                console.log('More than 50 tasks in cache, moving to MongoDB and flushing redis.');
+                await Task.insertMany(tasks); // add new one in mongodb or all from redis
                 await client.del(REDIS_KEY);
             } else {
                 await client.set(REDIS_KEY, JSON.stringify(tasks)); // add new + all existing in redis

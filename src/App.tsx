@@ -1,5 +1,4 @@
 import { useEffect, useMemo } from "react";
-import "./App.css";
 import { io, Socket } from "socket.io-client";
 import { toast } from "sonner";
 import axios from "axios";

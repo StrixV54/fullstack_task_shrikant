@@ -4,7 +4,7 @@ A real-time task management application built with WebSockets, NodeJs and HTTP.
 
 ## Live Demo
 
-🚀 [https://kaznote-wss.vercel.app/](https://kaznote-wss.vercel.app/)
+🚀 [https://kaznote-wss.vercel.app/](https://kaznote-wss.vercel.app/)   (backend takes sometime to bootup)
 
 ## About
 

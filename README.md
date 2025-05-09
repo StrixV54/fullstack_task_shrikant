@@ -1,54 +1,71 @@
-# React + TypeScript + Vite
+# KazamNote - Task WebApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A real-time task management application built with WebSockets, NodeJs and HTTP.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 [https://kaznote-wss.vercel.app/](https://kaznote-wss.vercel.app/)
 
-## Expanding the ESLint configuration
+## About
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This project implements a real-time to-do list application using Node.js with WebSockets (Socket.io) and HTTP. It features:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Adding new items to the list by sending messages with an "add" event to the WebSocket server
+- Data persistence using Redis cache (stores items as a stringified Array with a specific key)
+- Automatic migration of data to MongoDB when the cache exceeds 50 items
+- Retrieval of all items through a RESTful HTTP endpoint (/fetchAllTasks)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Technology Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Frontend**: React, TypeScript, Vite, Tailwind CSS
+- **Backend**: Node.js, Express, Socket.io
+- **Database**: Redis (caching), MongoDB (persistence)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+- Redis server
+- MongoDB instance
+
+### Installation
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/StrixV54/fullstack_task_shrikant.git
+   cd kaznote_wss
+   ```
+
+2. Install dependencies
+   ```bash
+   # Install frontend dependencies
+   npm install
+
+   # Install backend dependencies
+   cd backend
+   npm install
+   ```
+
+3. Set up environment variables
+   ```bash
+   # Create .env file in root directory
+   cp .env.sample .env
+
+   # Edit .env file with your Redis and MongoDB connection details
+   ```
+
+### Running the Application
+
+
+1. Start the frontend and backend development server
+   ```bash
+   # In the root directory
+   npm run dev
+   ```
+
+2. Open your browser and visit:
+   ```
+   http://localhost:5173
+   ```

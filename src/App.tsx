@@ -11,8 +11,8 @@ import NoteForm from "./components/NoteForm";
 import NotesList from "./components/NotesList";
 import Card from "./components/Card";
 
-const SOCKET_URL = import.meta.env.SOCKET_URL || "http://localhost:5000";
-const BACKEND_URL = import.meta.env.BACKEND_URL || "http://localhost:5000";
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:5000";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 const socket: Socket = io(SOCKET_URL);
 

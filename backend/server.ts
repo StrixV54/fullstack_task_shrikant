@@ -2,11 +2,9 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import http from "http";
-import { Server, Socket } from "socket.io";
-import mongoose from "mongoose";
-import { createClient } from 'redis';
-import dotenv from "dotenv";
-dotenv.config();
+import { Server } from "socket.io";
+import taskRoutes from "./routes/task";
+import socketConnection from "./socket";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -22,34 +20,14 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-const client = createClient({
-    username: process.env.REDIS_USERNAME,
-    password: process.env.REDIS_PASSWORD,
-    socket: {
-        host: process.env.REDIS_HOST,
-        port: Number(process.env.REDIS_PORT),
-    },
-});
-
-client.on('error', err => console.log('Redis Client Error', err));
-
-client.connect()
-    .then(() => console.log("Successfully connected to Redis!!"))
-    .catch(err => console.log("Error connecting to Redis!!\n", err));;
-
-mongoose.connect(process.env.NODE_ENV_MONGO_URL!)
-    .then(() => console.log("Successfully connected to MongoDB!!"))
-    .catch(err => console.log("Error connecting to MongoDB!!\n", err));
-
 // Routes
 app.get("/", (req, res) => {
     res.send(`Server is running.`);
 });
 
-io.on('connection', (socket: Socket) => {
-    console.log('a user connected', socket.id);
-});
+app.use("/api", taskRoutes);
+
+io.on('connection', socketConnection);
 
 server.listen(PORT, () => {
     console.log(`Server is running on PORT:${PORT}.`);

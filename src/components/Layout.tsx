@@ -1,0 +1,17 @@
+import React, { type ReactNode } from "react";
+import { Toaster } from "sonner";
+
+interface LayoutProps {
+    children: ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+    return (
+        <div className="flex w-full h-full items-center justify-center text-black m-auto">
+            <Toaster position="top-center" theme="light" />
+            {children}
+        </div>
+    );
+};
+
+export default Layout;

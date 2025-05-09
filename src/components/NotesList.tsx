@@ -21,7 +21,7 @@ const NotesList: React.FC<NotesListProps> = ({ notes, isLoading, error }) => {
                 {!error && !isLoading && notes.length === 0 && <p className="text-gray-500 py-4 mt-2">No notes yet. Add one!</p>}
 
                 {!error && notes.length > 0 && (
-                    <ol className="list-none flex flex-col w-full max-h-[270px] overflow-y-auto">
+                    <ol className="list-none flex flex-col w-full max-h-[270px] overflow-y-auto scroll-gutter">
                         {notes.map((note) => (
                             <Note key={note?.id} text={note?.text} />
                         ))}

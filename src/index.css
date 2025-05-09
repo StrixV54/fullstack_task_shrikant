@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
-@import "tw-animate-css";
-
 
 :root {
     font-family: "Inter", Avenir, Helvetica, Arial, sans-serif;
@@ -33,12 +31,24 @@ body {
     display: flex;
     place-items: center;
     min-width: 320px;
+    width: 100vw;
     min-height: 100vh;
+}
+
+.shadow-base {
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.22);
+}
+.shadow-large {
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.22);
+}
+
+.scroll-gutter {
+    scrollbar-gutter: auto;
 }
 
 /* Custom scrollbar styles */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 7px;
     height: 4px;
 }
 
@@ -47,7 +57,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #92400ea3;
+    background: rgba(146, 64, 14, 0.64);
     border-radius: 10px;
 }
 

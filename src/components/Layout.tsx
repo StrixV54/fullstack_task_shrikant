@@ -7,7 +7,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
-        <div className="flex w-full h-full items-center justify-center text-black m-auto">
+        <div className="flex w-screen min-h-screen items-center justify-center text-black m-auto">
             <Toaster position="top-center" theme="light" />
             {children}
         </div>

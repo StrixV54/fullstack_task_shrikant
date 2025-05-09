@@ -12,11 +12,14 @@ const PORT = process.env.PORT || 4000;
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: ["http://localhost:5173", "https://kaznote-wss.vercel.app/"]
+        origin: ["http://localhost:5173", "https://kaznote-wss.vercel.app"]
     }
 });
 
-app.use(cors({ origin: ["*"] }));
+app.use(cors({
+    origin: ["http://localhost:5173", "https://kaznote-wss.vercel.app"],
+    credentials: true
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
